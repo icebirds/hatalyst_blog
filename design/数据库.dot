@@ -1,0 +1,27 @@
+digraph G {
+	/*{{{*/
+	fontname = "Bitstream Vera Sans";
+	fontsize = 10;
+	node [fontsize = 10, shape = record];
+	edge [arrowsize = 0.8, fontsize = 9, color = red];/*}}}*/
+	
+	subgraph clusterSite {
+		label = "site";
+
+		user [
+			label="{user|a\lb\l}"
+		];
+
+		blogs [
+			label="{blogs|a\lb\l}"
+		];
+	}
+
+	subgraph clusterBlog {
+		label = "blog";
+
+		entries [
+			label="{entries|id\ltitle\ltime\lfile\l}"
+		];
+	}
+}
