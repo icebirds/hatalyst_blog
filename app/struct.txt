@@ -1,0 +1,37 @@
+网站并非是从0开始开发，在去年，我曾经开发发布过一款web框架hatalyst。项目地址是：http://code.google.com/p/hatalyst/。在这里，自己回顾一下这款框架的主要情况，也给在看这个帖子的朋友一个说明。
+
+框架的源码结构如下：
+.
+|-- app
+|   |-- distributer
+|   |   |-- EnDist.hx
+|   |   `-- ZhDist.hx
+|   |-- errors
+|   |   |-- en
+|   |   |   `-- 404.mtt
+|   |   `-- zh
+|   |       `-- 404.mtt
+|   |-- plugins
+|   |-- processers
+|   `-- templates
+|       |-- en
+|       |   |-- index.mtt
+|       |   |-- license.mtt
+|       |   `-- paramsample.mtt
+|       `-- zh
+|           |-- index.mtt
+|           |-- license.mtt
+|           `-- paramsample.mtt
+|-- Main.hx
+`-- system
+    |-- core
+    |   `-- BaseDistributer.hx
+    `-- plugins
+
+在源码目录下共有2个文件夹和一个代码文件，其中Main.hx是框架的主入口类，system下只有一个代码文件，这两个文件就是目前的hatalyst框架全部。app目录则是一个框架的使用范例。
+
+整个框架的核心思路就是“分发”，对于网址的处理，采用URI方式，支持URI后缀。通过URI后缀的支持以及apache的rewrite模块，可以实现网站的伪静态化。
+
+关于URI以及伪静态化，其中的一个例子是目前的http://icebirds.net网站，这个网站就是采用hatalyst开发。从这个网站中，我们看到的所有页面的网址似乎都是静态的，但其实并不是，如：http://icebirds.net/service/index.html这个页面，如果把网址修改一下，变成http://icebirds.net/index.php/service/index.html,也可以看到同样的页面，而http://icebirds.net/service/index也是一样的页面。事实上，http://icebirds.net/index.php/service/index才是它最原始的网址，在这里，URI就是/service/index。通过框架对于后缀的处理支持，我们可以做到让它变成http://icebirds.net/index.php/service/index.html，而通过apache的rewrite模块，隐藏掉中间的/index.php这一段，于是，网站就“静态化”了。
+
+
