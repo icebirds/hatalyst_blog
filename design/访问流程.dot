@@ -1,0 +1,22 @@
+digraph G {
+	/*{{{*/
+	fontname = "Bitstream Vera Sans";
+	fontsize = 8;
+	node [fontsize = 10, shape = box];
+	edge [arrowsize = 0.8, fontsize = 9, color = red];/*}}}*/
+	//各个图块
+	viewsite[label="查看主站" shape="oval" fontcolor="red" color="red"];
+	processdomain[label="处理域名"];
+	distributer[label="分发器"];
+	mainsite[label="显示主站函数" fontcolor="red" color="red"];
+	checkdb[label="查询所属数据库" fontcolor="blue" color="blue"];
+
+	viewblog[label="查看博客" shape="oval" fontcolor="blue" color="blue"];
+	showblog[label="显示博客函数" fontcolor="blue" color="blue"];
+
+	//流程
+	viewsite -> processdomain -> distributer -> mainsite;
+	
+	edge [color=blue];
+	viewblog -> processdomain -> distributer -> showblog ->checkdb;
+}
