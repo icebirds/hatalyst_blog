@@ -2,26 +2,49 @@ digraph G {
 	/*{{{*/
 	fontname = "Bitstream Vera Sans";
 	fontsize = 10;
-	node [fontsize = 10, shape = record];
-	edge [arrowsize = 0.8, fontsize = 9, color = red];/*}}}*/
+	node [fontname="WenQuanYi Micro Hei Mono" fontsize = 10, shape = record];
+	edge [arrowsize = 0.8, fontsize = 9, color = red, labelfontcolor=blue];/*}}}*/
 	
 	subgraph clusterSite {
-		label = "site";
+		label = "site\n主站数据库";
 
-		user [
-			label="{user|a\lb\l}"
+		siteinfo [
+			label="{info|sitename \lsuperuser \lpasswd \l}"
 		];
 
+		user [
+			label="{user|*id\l name\l passwd\l email\l group\l}"
+		];
+
+		usergroup [
+			label="{usergrp|*id\l name\l}"
+		]
+
 		blogs [
-			label="{blogs|a\lb\l}"
+			label="{blogs|*id\l owner\l name\l summary\l users\l}"
 		];
 	}
 
 	subgraph clusterBlog {
-		label = "blog";
+		label = "blog\n各博客数据库";
+
+		bloginfo [
+			label="{info|name \lsummary \lusers \l}"
+		];
 
 		entries [
-			label="{entries|id\ltitle\ltime\lfile\l}"
+			label="{entries|*id\l author\l title\l time\l file\l}"
+		];
+
+		comments [
+			label="{comments|*id\l entry\l name\l mail\l url\l file\l}"
 		];
 	}
+
+	blogs -> bloginfo[taillabel="name,\r                      summary,\rusers\r"];
+	blogs -> user[taillabel="users       \l" headlabel="    id"];
+	siteinfo -> user[taillabel=" \lsuperuser, \lpasswd\l" headlabel="id, \lpasswd\l \l \l"];
+	user -> usergroup[taillabel="group        " headlabel="   id \l \l"];
+	entries -> user[taillabel="author      ", headlabel="         name"];
+	entries -> comments[taillabel="id", headlabel="entry"];
 }
