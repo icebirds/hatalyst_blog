@@ -27,6 +27,7 @@ class system_core_BaseDistributer {
 	}
 	public function show404($site) {
 		$error404 = new haxe_Template(php_io_File::getContent(php_Sys::getCwd() . "lib/app/errors/" . $site . "/404.mtt"));
+		php_Web::setReturnCode(404);
 		php_Lib::hprint($error404->execute(_hx_anonymous(array()), null));
 	}
 	public function findURI($uris, $uri, $offset) {

@@ -90,6 +90,7 @@ class BaseDistributer
 	{
 		//Lib.print(output);
 		var error404 = new haxe.Template(File.getContent(Sys.getCwd() + Main.err_dir + site + "/404.mtt"));
+		Web.setReturnCode(404);
 		Lib.print(error404.execute({}));
 	}
 

@@ -2,13 +2,14 @@
 
 class Main {
 	public function __construct() { if(!php_Boot::$skip_constructor) {
-		switch($_SERVER['SERVER_NAME']) {
-		case "zhhost":{
+		$hostName = $_SERVER['SERVER_NAME'];
+		$r = new EReg("^.+\\.bloghost", "");
+		if($hostName === "bloghost") {
 			_hx_deref(new app_distributer_ZhDist())->distribute();
-		}break;
-		default:{
-			_hx_deref(new app_distributer_EnDist())->distribute();
-		}break;
+		} else {
+			if($r->match($hostName)) {
+				_hx_deref(new app_distributer_EnDist())->distribute();
+			}
 		}
 	}}
 	static $urlRule;
