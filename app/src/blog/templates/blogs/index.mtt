@@ -17,11 +17,6 @@
 	<h2>Navigation</h2>
 	<ul>
 		<li><a href="/">Homepage</a></li>
-		<li><a href="/index.php/paramsample/1.html">Parameter Sample 1</a></li>
-		<li><a href="/index.php/paramsample/2/moreparam.html">Parameter Sample 2</a></li>
-		<li><a href="/index.php/this/will/got/a/error.html">Error Sample</li>
-		<li><a href="/index.php/license.html">LICENSE</a></li>
-		<li><a href="http://zhhost/">中文</a></li>
 	</ul>
 	<h2>INTRODUCTION</h2>
 	<p>Hatalyst is a easy and fast web framework written using haXe language.</p>

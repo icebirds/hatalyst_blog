@@ -47,8 +47,8 @@ import neko.Lib;
 import neko.Web;
 #end
 //import your defined classes here
-import app.distributer.EnDist;
-import app.distributer.ZhDist;
+import blog.distributer.MainDist;
+import blog.distributer.BlogDist;
 
 class Main
 {
@@ -63,29 +63,19 @@ class Main
 	public static inline var temp_dir:String = "lib/app/templates/";
 
 	public static inline var err_dir:String = "lib/app/errors/";
+	
 	function new()
 	{
 		var hostName = Web.getHostName();
 		var r:EReg = ~/^.+\.bloghost/;
 		if(hostName == "bloghost")
 		{
-			new ZhDist().distribute();
+			new MainDist().distribute();
 		}
 		else if(r.match(hostName))
 		{
-			new EnDist().distribute();
+			new BlogDist().distribute();
 		}
-		/*
-		switch(Web.getHostName())
-		{
-			//Process domain zhhost
-			case "zhhost":
-				new ZhDist().distribute();
-			//Process other domains
-			default:
-				new EnDist().distribute();
-		}
-		*/
 	}
 
 	static function main()

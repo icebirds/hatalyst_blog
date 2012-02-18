@@ -1,5 +1,5 @@
-error = cp ./src/app/errors/ ./bin/lib/app/ -Ru
-temp = cp ./src/app/templates/ ./bin/lib/app/ -Ru
+error = cp ./src/blog/errors/ ./bin/lib/app/ -Ru
+temp = cp ./src/blog/templates/ ./bin/lib/app/ -Ru
 
 build:
 	haxe build.hxml
