@@ -59,7 +59,7 @@ class BaseDistributer
 	{
 		//处理uri
 		var uri = processURI(Web.getURI());
-		if(uri.length == 0)
+		if(uri.length == 0 || (uri.length == 1 && uri[0]=="index"))
 		{
 			Reflect.callMethod(uris, "defaultpage", [[]]);
 			return;

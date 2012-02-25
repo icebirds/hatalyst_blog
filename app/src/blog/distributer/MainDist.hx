@@ -22,7 +22,8 @@ class MainDist extends BaseDistributer
 			/*admin: {
 				//index:this.paramSample,
 			}*/
-			//setup: 
+			setup: this.setup,
+			install: this.install
 		};
 		super();
 	}
@@ -39,6 +40,33 @@ class MainDist extends BaseDistributer
 		showTemplate("main/index");
 	}
 
+	function setup(?params:Array<String>)
+	{
+		if(params.length > 0)
+		{
+			trace("太多参数");
+			show404();
+			return;
+		}
+		showTemplate("main/setup");
+	}
+
+	function install(?params:Array<String>)
+	{
+		if(params.length > 0)
+		{
+			show404();
+			return;
+		}
+		var postData = php.Web.getParams();
+		if(Lambda.array(postData).length !=3)
+		{
+			php.Web.setReturnCode(400);
+			php.Lib.print("fuck");
+		}
+
+		trace(postData);
+	}
 
 
 }
